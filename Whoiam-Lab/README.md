@@ -1,4 +1,4 @@
-# Informe de Laboratorio: Whoiam
+# Reporte de Explotación | Writeup: Exfiltración de Credenciales, RCE en WordPress y Escalada de Privilegios Lateral y Vertical.
 
 El presente documento detalla el proceso de analisis de vulnerabilidades y pruebas de penetracion (*Pentesting*) realizado sobre la maquina , un entorno controlado desplegado localmente mediante la plataforma **DockerLabs**. 
 
@@ -7,6 +7,12 @@ El objetivo es identificar servicios expuestos, explotar fallos de configuracion
 * **Curso:** [Ciberseguridad BIOS]
 * **Auditoria:** [NGalarza-sysec]
 * **Objetivo de Evaluación:** Máquina Whoiam (IP: `172.18.0.2`)
+* **Vulnerabilidades Explotadas:**
+1. **Exfiltración de Credenciales:** Exposición de archivos de respaldo comprimidos (`databaseback2may.zip`) en directorio web público (`/backups`).
+2. **Ejecución Remota de Comandos (RCE):** Despliegue de un *Plugin* malicioso en PHP actuando como *Webshell* y *Reverse Shell* en WordPress.
+3. **Escalada de Privilegios Horizontal (Sudo Abuse):** Malconfiguración en regla `sudoers` para ejecución del binario `/usr/bin/find` sin contraseña (`www-data` -> `rafa`).
+4. **Escalada de Privilegios Horizontal (Sudo Abuse):** Malconfiguración en regla `sudoers` para ejecución del binario interactivo `/usr/sbin/debugfs` sin contraseña (`rafa` -> `ruben`).
+5. **Escalada de Privilegios Vertical (Inyección Bash Arithmetic):** Inyección de comandos en el script `/opt/penguin.sh` ejecutado mediante `sudo` como `root` (`ruben` -> `root`).
 
 > [!IMPORTANT]
 > **Índice de Contenidos**
